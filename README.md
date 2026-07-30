@@ -1,5 +1,13 @@
 Bu proje, Strategy Design Pattern'ın Spring Boot kullanılarak gerçek hayata yakın bir senaryoda uygulanmasını göstermek amacıyla geliştirilmiştir. Örnek olarak bir ödeme sistemi ele alınmış ve farklı ödeme yöntemleri (Kredi Kartı, Banka Havalesi, Papara ve Kripto) birbirinden bağımsız stratejiler olarak tasarlanmıştır. Bu sayede yeni bir ödeme yöntemi eklenirken mevcut iş kurallarının değiştirilmesine gerek kalmadan sistem genişletilebilir. Proje, Strategy Pattern'ın kullanımını, Spring'in bağımlılık enjeksiyonu (Dependency Injection) mekanizmasıyla birlikte göstermeyi ve temiz kod ile SOLID prensiplerine uygun bir mimari sunmayı amaçlamaktadır.
 
+Projenin Amacı
+Bir e-ticaret sisteminde kullanıcı farklı ödeme yöntemleri ile ödeme yapabilir.
+
+Desteklenen ödeme yöntemleri:
+Credit Card
+Bank Transfer
+Papara
+
 Strategy Pattern Nedir?
 Strategy Pattern, bir tasarım desenidir. Bir işlemin farklı gerçekleştirilme biçimlerini ayrı sınıflar halinde tanımlayarak, çalışma anında (runtime) uygun algoritmanın seçilmesini sağlar.
 Bu yaklaşım sayesinde her algoritma kendi sınıfında izole edilir ve client hangi algoritmanın kullanılacağını detaylarını bilmeden çalışabilir. Böylece kod daha esnek, okunabilir ve genişletilebilir hale gelir.
