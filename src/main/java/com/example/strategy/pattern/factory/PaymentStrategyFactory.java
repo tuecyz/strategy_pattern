@@ -31,7 +31,6 @@ public class PaymentStrategyFactory {
         if (strategy == null) {
             throw new UnsupportedPaymentTypeException(paymentType);
         }
-
         return strategy;
     }
 }

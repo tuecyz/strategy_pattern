@@ -15,5 +15,4 @@ public class PaymentRequest {
 
     @Positive
     private BigDecimal amount;
-
 }

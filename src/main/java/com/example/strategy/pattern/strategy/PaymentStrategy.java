@@ -7,7 +7,6 @@ import com.example.strategy.pattern.enums.PaymentType;
 public interface PaymentStrategy {
 
     PaymentType getPaymentType();
-
     PaymentResponse pay(PaymentRequest request);
 
 }
