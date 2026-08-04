@@ -1,7 +1,7 @@
 package com.example.strategy.pattern.service;
 
-import com.example.strategy.pattern.dto.PaymentRequest;
-import com.example.strategy.pattern.dto.PaymentResponse;
+import com.example.strategy.pattern.dto.PaymentRequestDTO;
+import com.example.strategy.pattern.dto.PaymentResponseDTO;
 import com.example.strategy.pattern.factory.PaymentStrategyFactory;
 import com.example.strategy.pattern.strategy.PaymentStrategy;
 import lombok.RequiredArgsConstructor;
@@ -13,7 +13,7 @@ public class PaymentService {
 
     private final PaymentStrategyFactory strategyFactory;
 
-    public PaymentResponse processPayment(PaymentRequest request) {
+    public PaymentResponseDTO processPayment(PaymentRequestDTO request) {
 
         PaymentStrategy strategy = strategyFactory.getStrategy(request.getPaymentType());
         return strategy.pay(request);

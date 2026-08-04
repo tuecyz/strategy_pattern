@@ -12,7 +12,7 @@ import java.math.BigDecimal;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class PaymentResponse {
+public class PaymentResponseDTO {
 
     private PaymentStatus status;
     private String message;

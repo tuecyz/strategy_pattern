@@ -1,15 +1,28 @@
 package com.example.strategy.pattern.exception;
 
+import com.example.strategy.pattern.dto.ErrorResponseDTO;
+import jakarta.servlet.http.HttpServletRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import java.time.LocalDateTime;
 
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(UnsupportedPaymentTypeException.class)
-    public ResponseEntity<String> handleUnsupportedPayment(UnsupportedPaymentTypeException ex) {
+    public ResponseEntity<ErrorResponseDTO> handleUnsupportedPayment(UnsupportedPaymentTypeException unsupportedPaymentTypeException, HttpServletRequest request) {
 
-        return ResponseEntity.badRequest().body(ex.getMessage());
+        ErrorResponseDTO errorResponseDTO = ErrorResponseDTO.builder()
+                .timestamp(LocalDateTime.now())
+                .status(HttpStatus.BAD_REQUEST.value())
+                .error(HttpStatus.BAD_REQUEST.getReasonPhrase())
+                .message(unsupportedPaymentTypeException.getMessage())
+                .path(request.getRequestURI())
+                .build();
+
+        return ResponseEntity.badRequest().body(errorResponseDTO);
     }
 }

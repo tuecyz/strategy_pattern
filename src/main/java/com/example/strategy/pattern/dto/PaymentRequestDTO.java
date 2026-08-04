@@ -8,7 +8,7 @@ import lombok.Data;
 import java.math.BigDecimal;
 
 @Data
-public class PaymentRequest {
+public class PaymentRequestDTO {
 
     @NotNull
     private PaymentType paymentType;

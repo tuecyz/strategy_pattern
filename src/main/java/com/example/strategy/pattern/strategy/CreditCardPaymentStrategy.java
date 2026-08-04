@@ -1,7 +1,7 @@
 package com.example.strategy.pattern.strategy;
 
-import com.example.strategy.pattern.dto.PaymentRequest;
-import com.example.strategy.pattern.dto.PaymentResponse;
+import com.example.strategy.pattern.dto.PaymentRequestDTO;
+import com.example.strategy.pattern.dto.PaymentResponseDTO;
 import com.example.strategy.pattern.enums.PaymentStatus;
 import com.example.strategy.pattern.enums.PaymentType;
 import org.springframework.stereotype.Component;
@@ -15,9 +15,9 @@ public class CreditCardPaymentStrategy implements PaymentStrategy {
     }
 
     @Override
-    public PaymentResponse pay(PaymentRequest request) {
+    public PaymentResponseDTO pay(PaymentRequestDTO request) {
 
-        return PaymentResponse.builder()
+        return PaymentResponseDTO.builder()
                 .status(PaymentStatus.SUCCESS)
                 .message("Credit Card payment completed successfully.")
                 .amount(request.getAmount())
