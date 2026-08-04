@@ -13,6 +13,7 @@ public class PaymentRequestDTO {
     @NotNull
     private PaymentType paymentType;
 
+    @NotNull
     @Positive
     private BigDecimal amount;
 }
