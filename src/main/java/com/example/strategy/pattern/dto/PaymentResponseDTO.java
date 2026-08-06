@@ -17,4 +17,5 @@ public class PaymentResponseDTO {
     private PaymentStatus status;
     private String message;
     private BigDecimal amount;
+    private String transactionId;
 }
