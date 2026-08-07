@@ -34,6 +34,9 @@ public class PaymentService {
                 .build();
 
         paymentRepository.save(payment);
+
+        response.setTransactionId(transactionId);
+
         return response;
     }
 }
