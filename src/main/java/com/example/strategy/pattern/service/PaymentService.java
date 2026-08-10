@@ -10,6 +10,8 @@ import com.example.strategy.pattern.util.TransactionIdGenerator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PaymentService {
@@ -38,5 +40,9 @@ public class PaymentService {
         response.setTransactionId(transactionId);
 
         return response;
+    }
+
+    public List<PaymentEntity> getAllPayments() {
+        return paymentRepository.findAll();
     }
 }
