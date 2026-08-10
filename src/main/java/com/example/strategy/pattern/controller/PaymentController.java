@@ -29,4 +29,9 @@ public class PaymentController {
     public ResponseEntity<List<PaymentEntity>> getAllPayments() {
         return ResponseEntity.ok(paymentService.getAllPayments());
     }
+
+    @GetMapping("/{transactionId}")
+    public ResponseEntity<PaymentEntity> getPaymentByTransactionId(@PathVariable String transactionId) {
+        return ResponseEntity.ok(paymentService.getPaymentByTransactionId(transactionId));
+    }
 }

@@ -40,4 +40,10 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(errorResponseDTO);
     }
+
+    @ExceptionHandler(PaymentNotFoundException.class)
+    public ResponseEntity<String> handlePaymentNotFound(PaymentNotFoundException ex) {
+
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+    }
 }

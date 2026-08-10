@@ -3,6 +3,7 @@ package com.example.strategy.pattern.service;
 import com.example.strategy.pattern.dto.PaymentRequestDTO;
 import com.example.strategy.pattern.dto.PaymentResponseDTO;
 import com.example.strategy.pattern.entity.PaymentEntity;
+import com.example.strategy.pattern.exception.PaymentNotFoundException;
 import com.example.strategy.pattern.factory.PaymentStrategyFactory;
 import com.example.strategy.pattern.repository.PaymentRepository;
 import com.example.strategy.pattern.strategy.PaymentStrategy;
@@ -44,5 +45,9 @@ public class PaymentService {
 
     public List<PaymentEntity> getAllPayments() {
         return paymentRepository.findAll();
+    }
+
+    public PaymentEntity getPaymentByTransactionId(String transactionId) {
+        return paymentRepository.findByTransactionId(transactionId).orElseThrow(() -> new PaymentNotFoundException(transactionId));
     }
 }
