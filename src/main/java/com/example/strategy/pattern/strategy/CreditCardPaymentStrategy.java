@@ -1,5 +1,6 @@
 package com.example.strategy.pattern.strategy;
 
+import com.example.strategy.pattern.dto.CreditCardRequestDTO;
 import com.example.strategy.pattern.dto.PaymentRequestDTO;
 import com.example.strategy.pattern.dto.PaymentResponseDTO;
 import com.example.strategy.pattern.enums.PaymentStatus;
@@ -16,11 +17,12 @@ public class CreditCardPaymentStrategy implements PaymentStrategy {
 
     @Override
     public PaymentResponseDTO pay(PaymentRequestDTO request) {
+        CreditCardRequestDTO creditCardRequest = (CreditCardRequestDTO) request;
 
         return PaymentResponseDTO.builder()
                 .status(PaymentStatus.SUCCESS)
                 .message("Credit Card payment completed successfully.")
-                .amount(request.getAmount())
+                .amount(creditCardRequest.getAmount())
                 .build();
     }
 }

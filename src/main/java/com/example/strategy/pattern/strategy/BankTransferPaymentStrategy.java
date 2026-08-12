@@ -1,11 +1,15 @@
 package com.example.strategy.pattern.strategy;
 
+import com.example.strategy.pattern.dto.BankTransferRequestDTO;
 import com.example.strategy.pattern.dto.PaymentRequestDTO;
 import com.example.strategy.pattern.dto.PaymentResponseDTO;
 import com.example.strategy.pattern.enums.PaymentStatus;
 import com.example.strategy.pattern.enums.PaymentType;
+import org.springframework.stereotype.Component;
 
-public class BankTransferPaymentStrategy implements PaymentStrategy{
+@Component
+public class BankTransferPaymentStrategy implements PaymentStrategy {
+
     @Override
     public PaymentType getPaymentType() {
         return PaymentType.BANK_TRANSFER;
@@ -13,10 +17,12 @@ public class BankTransferPaymentStrategy implements PaymentStrategy{
 
     @Override
     public PaymentResponseDTO pay(PaymentRequestDTO request) {
+        BankTransferRequestDTO bankTransferRequest = (BankTransferRequestDTO) request;
+
         return PaymentResponseDTO.builder()
                 .status(PaymentStatus.SUCCESS)
-                .message("Bank Transfer payment completed successfully.")
-                .amount(request.getAmount())
+                .message("Bank transfer payment completed successfully.")
+                .amount(bankTransferRequest.getAmount())
                 .build();
     }
 }
