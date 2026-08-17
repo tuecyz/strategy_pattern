@@ -4,8 +4,9 @@ import com.example.strategy.pattern.dto.PaymentRequestDTO;
 import com.example.strategy.pattern.dto.PaymentResponseDTO;
 import com.example.strategy.pattern.enums.PaymentType;
 
-public interface PaymentStrategy {
+public interface PaymentStrategy<T extends PaymentRequestDTO> {
 
     PaymentType getPaymentType();
-    PaymentResponseDTO pay(PaymentRequestDTO request);
+
+    PaymentResponseDTO pay(T request);
 }
