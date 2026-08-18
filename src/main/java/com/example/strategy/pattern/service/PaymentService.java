@@ -20,18 +20,18 @@ public class PaymentService {
     private final PaymentStrategyFactory strategyFactory;
     private final PaymentRepository paymentRepository;
 
-    public PaymentResponseDTO processPayment(PaymentRequestDTO request) {
+    public PaymentResponseDTO processPayment(PaymentRequestDTO paymentRequestDTO) {
 
-        PaymentStrategy strategy = strategyFactory.getStrategy(request.getPaymentType());
-        PaymentResponseDTO response = strategy.pay(request);
+        PaymentStrategy<?> strategy = strategyFactory.getStrategy(paymentRequestDTO.getPaymentType());
+        PaymentResponseDTO response = strategy.pay(paymentRequestDTO);
 
         String transactionId = TransactionIdGenerator.generate();
         response.setTransactionId(transactionId);
 
         PaymentEntity payment = PaymentEntity.builder()
                 .transactionId(transactionId)
-                .paymentType(request.getPaymentType())
-                .amount(request.getAmount())
+                .paymentType(paymentRequestDTO.getPaymentType())
+                .amount(paymentRequestDTO.getAmount())
                 .currency("TRY")
                 .status(response.getStatus())
                 .build();

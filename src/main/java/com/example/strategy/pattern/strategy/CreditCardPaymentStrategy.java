@@ -8,7 +8,7 @@ import com.example.strategy.pattern.enums.PaymentType;
 import org.springframework.stereotype.Component;
 
 @Component
-public class CreditCardPaymentStrategy implements PaymentStrategy {
+public class CreditCardPaymentStrategy implements PaymentStrategy<CreditCardRequestDTO> {
 
     @Override
     public PaymentType getPaymentType() {
@@ -16,13 +16,12 @@ public class CreditCardPaymentStrategy implements PaymentStrategy {
     }
 
     @Override
-    public PaymentResponseDTO pay(PaymentRequestDTO request) {
-        CreditCardRequestDTO creditCardRequest = (CreditCardRequestDTO) request;
+    public PaymentResponseDTO pay(PaymentRequestDTO creditCardRequestDTO) {
 
         return PaymentResponseDTO.builder()
                 .status(PaymentStatus.SUCCESS)
                 .message("Credit Card payment completed successfully.")
-                .amount(creditCardRequest.getAmount())
+                .amount(creditCardRequestDTO.getAmount())
                 .build();
     }
 }

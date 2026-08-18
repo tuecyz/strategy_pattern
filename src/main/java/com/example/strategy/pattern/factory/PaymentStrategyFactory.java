@@ -13,9 +13,9 @@ import java.util.stream.Collectors;
 @Component
 public class PaymentStrategyFactory {
 
-    private final Map<PaymentType, PaymentStrategy> strategies;
+    private final Map<PaymentType, PaymentStrategy<?>> strategies;
 
-    public PaymentStrategyFactory(List<PaymentStrategy> strategyList) {
+    public PaymentStrategyFactory(List<PaymentStrategy<?>> strategyList) {
 
         this.strategies = strategyList.stream()
                 .collect(Collectors.toMap(
@@ -24,9 +24,9 @@ public class PaymentStrategyFactory {
                 ));
     }
 
-    public PaymentStrategy getStrategy(PaymentType paymentType) {
+    public PaymentStrategy<?> getStrategy(PaymentType paymentType) {
 
-        PaymentStrategy strategy = strategies.get(paymentType);
+        PaymentStrategy<?> strategy = strategies.get(paymentType);
 
         if (strategy == null) {
             throw new UnsupportedPaymentTypeException(paymentType);

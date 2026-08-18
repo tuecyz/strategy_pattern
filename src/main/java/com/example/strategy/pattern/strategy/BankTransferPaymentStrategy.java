@@ -8,7 +8,7 @@ import com.example.strategy.pattern.enums.PaymentType;
 import org.springframework.stereotype.Component;
 
 @Component
-public class BankTransferPaymentStrategy implements PaymentStrategy {
+public class BankTransferPaymentStrategy implements PaymentStrategy<BankTransferRequestDTO> {
 
     @Override
     public PaymentType getPaymentType() {
@@ -16,13 +16,12 @@ public class BankTransferPaymentStrategy implements PaymentStrategy {
     }
 
     @Override
-    public PaymentResponseDTO pay(PaymentRequestDTO request) {
-        BankTransferRequestDTO bankTransferRequest = (BankTransferRequestDTO) request;
+    public PaymentResponseDTO pay(PaymentRequestDTO bankTransferRequestDTO) {
 
         return PaymentResponseDTO.builder()
                 .status(PaymentStatus.SUCCESS)
                 .message("Bank transfer payment completed successfully.")
-                .amount(bankTransferRequest.getAmount())
+                .amount(bankTransferRequestDTO.getAmount())
                 .build();
     }
 }

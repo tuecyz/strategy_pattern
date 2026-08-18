@@ -8,5 +8,5 @@ public interface PaymentStrategy<T extends PaymentRequestDTO> {
 
     PaymentType getPaymentType();
 
-    PaymentResponseDTO pay(T request);
+    PaymentResponseDTO pay(PaymentRequestDTO request);
 }

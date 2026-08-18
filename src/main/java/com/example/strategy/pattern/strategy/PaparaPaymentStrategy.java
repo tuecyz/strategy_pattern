@@ -8,7 +8,7 @@ import com.example.strategy.pattern.enums.PaymentType;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PaparaPaymentStrategy implements PaymentStrategy {
+public class PaparaPaymentStrategy implements PaymentStrategy<PaparaRequestDTO> {
 
     @Override
     public PaymentType getPaymentType() {
@@ -16,13 +16,11 @@ public class PaparaPaymentStrategy implements PaymentStrategy {
     }
 
     @Override
-    public PaymentResponseDTO pay(PaymentRequestDTO request) {
-        PaparaRequestDTO paparaRequest = (PaparaRequestDTO) request;
-
+    public PaymentResponseDTO pay(PaymentRequestDTO paymentRequestDTO) {
         return PaymentResponseDTO.builder()
                 .status(PaymentStatus.SUCCESS)
                 .message("Papara payment completed successfully.")
-                .amount(paparaRequest.getAmount())
+                .amount(paymentRequestDTO.getAmount())
                 .build();
     }
 }
