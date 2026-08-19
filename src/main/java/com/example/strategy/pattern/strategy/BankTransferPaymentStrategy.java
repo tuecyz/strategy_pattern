@@ -3,12 +3,16 @@ package com.example.strategy.pattern.strategy;
 import com.example.strategy.pattern.dto.BankTransferRequestDTO;
 import com.example.strategy.pattern.dto.PaymentRequestDTO;
 import com.example.strategy.pattern.dto.PaymentResponseDTO;
-import com.example.strategy.pattern.enums.PaymentStatus;
 import com.example.strategy.pattern.enums.PaymentType;
+import com.example.strategy.pattern.gateway.PaymentGateway;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
+@RequiredArgsConstructor
 public class BankTransferPaymentStrategy implements PaymentStrategy<BankTransferRequestDTO> {
+
+    private final PaymentGateway<BankTransferRequestDTO> paymentGateway;
 
     @Override
     public PaymentType getPaymentType() {
@@ -16,12 +20,7 @@ public class BankTransferPaymentStrategy implements PaymentStrategy<BankTransfer
     }
 
     @Override
-    public PaymentResponseDTO pay(PaymentRequestDTO bankTransferRequestDTO) {
-
-        return PaymentResponseDTO.builder()
-                .status(PaymentStatus.SUCCESS)
-                .message("Bank transfer payment completed successfully.")
-                .amount(bankTransferRequestDTO.getAmount())
-                .build();
+    public PaymentResponseDTO pay(PaymentRequestDTO request) {
+        return paymentGateway.processPayment((BankTransferRequestDTO) request);
     }
 }
